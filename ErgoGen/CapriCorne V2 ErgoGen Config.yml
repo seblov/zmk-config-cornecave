@@ -1,0 +1,375 @@
+units:
+  kx: u
+  ky: u
+  px: u + 2
+  py: u + 2
+
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [75,-150]
+      columns:
+        outer:
+          key.column_net: P1
+        pinky:
+          key.column_net: P0
+        ring:
+          key:
+            stagger: 12
+          key.column_net: P2
+        middle:
+          key:
+            stagger: 8
+          key.column_net: P3
+        index:
+          key:
+            stagger: -5
+          key.column_net: P4
+        inner:
+          key:
+            stagger: -3
+          key.column_net: P5
+      rows:
+        bottom:
+          row_net: P8
+        home:
+          row_net: P7
+        top:
+          row_net: P6
+    thumbs:
+      key:
+        padding: 0kx
+        spread: 1u 
+      anchor:
+        ref: matrix_pinky_bottom
+        shift: [40, -8]
+      columns:
+
+        super:
+          key.column_net: P3
+        layer:
+          key:
+            splay: -10
+            rotate:
+            spread: 1u
+            shift: [0,-2]
+          key.column_net: P4
+        space:
+          key:
+            splay: -100
+            spread: 1u
+            shift: [4]
+          key.column_net: P5
+      rows:
+        cluster:
+          row_net: P9
+outlines:
+
+  mt_hole_1:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_outer_top
+        shift: [9.5, -9.5]
+
+  mt_hole_2:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_outer_home
+        shift: [9.5, -9.5]
+  
+  mt_hole_3:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_pinky_home
+        shift: [9.5, -9.5]
+  
+  mt_hole_4:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_pinky_top
+        shift: [9.5, -9.5]
+  
+  mt_hole_5:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_middle_bottom
+        shift: [0, -14]
+  
+  mt_hole_6:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_middle_top
+        shift: [9.5, -9.5]
+
+  mt_hole_7:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: matrix_index_top
+        shift: [9.5, -9.5]
+
+  mt_hole_8:
+    - what: circle
+      radius: 2
+      operation: stack
+      where:
+      - ref: thumbs_layer_cluster
+        shift: [26, 12]
+
+  mt_hole_9:
+    - what: circle
+      radius: 4.5
+      operation: stack
+      where:
+      - ref: matrix_inner_home
+        shift: [21,-9]
+
+
+  board:
+    - what: polygon
+      operation: stack
+      points:
+      - ref: matrix_outer_top
+        shift: [-0.5px,0.5py]
+      - ref: matrix_pinky_top
+        shift: [0.4px,0.5py]
+      - ref: matrix_ring_top
+        shift: [-.5px,0.5py]
+      - ref: matrix_middle_top
+        shift: [-.5px,.13py]
+      - ref: matrix_middle_top
+        shift: [-0.5px,0.5py]
+      - ref: matrix_index_top
+        shift: [-0.4px,0.75py]
+      - ref: matrix_index_top
+        shift: [-.4px,0.5py]
+      - ref: matrix_inner_top
+        shift: [-.4px, .65py]
+      - ref: matrix_inner_top
+        shift: [-.4px, .5py]
+      - ref: matrix_inner_top
+        shift: [1.5px, .5py]
+      - ref: matrix_inner_home
+        shift: [1.5px,-.4py]
+      - ref: matrix_inner_home
+        shift: [.8px,-1.8py]
+      - ref: thumbs_layer_cluster
+        shift: [1.25px, -.7py]
+      - ref: thumbs_super_cluster
+        shift: [1.25px,-.7py]
+      - ref: thumbs_super_cluster
+        shift: [.45px,-.5py]
+      - ref: matrix_ring_bottom
+        shift: [0.5px,-1.45py]
+      - ref: matrix_ring_bottom
+        shift: [.5px,-.5py]
+      - ref: matrix_ring_bottom
+        shift: [-.4px,-.5py]
+      - ref: matrix_pinky_bottom
+        shift: [0.5px,-0.5py]
+      - ref: matrix_outer_bottom
+        shift: [-0.5px,-0.5py]
+      fillet: 2
+  
+  raw:
+    - what: rectangle
+      where: true
+      size: [1.2px, 1.2py]
+      fillet: 2
+  
+  keys:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [1cx,1cy]
+  
+  keys_mt_hole:
+  - name: mt_hole_1
+  - name: mt_hole_2
+  - name: mt_hole_3
+  - name: mt_hole_4
+  - name: mt_hole_5
+  - name: mt_hole_6
+  - name: mt_hole_7
+  - name: mt_hole_8
+  - name: mt_hole_9
+  - operation: stack
+    name: keys
+
+  3d_plate:
+  - name: keys_mt_hole
+  - operation: stack
+    name: board
+
+
+  combo:
+  - name: board
+  - operation: subtract
+    name: keys
+  
+  pcb_outline:
+  - name: board
+
+pcbs:
+  CapriCorne:
+    template: kicad8
+    outlines:
+      main:
+        outline: pcb_outline
+    footprints:
+      # Hotswap Choc keys.
+      choc_hotswap:
+        what: ceoloide/switch_choc_v1_v2
+        where: true
+        params:
+          include_keycap: true
+          reversible: true
+          hotswap: true
+          choc_v2_support: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+
+      diode_f:
+        what: ceoloide/diode_tht_sod123
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+          reversible: true
+          include_tht: false
+          side: F
+        adjust:
+          shift: [0, -5]
+          rotate: 180
+
+      nice_nano:
+        what: ceoloide/mcu_nice_nano
+        params:
+          side: F
+          reverse_mount: true
+          reversible: true
+          only_required_jumpers: false
+        where:
+          ref.aggregate.parts: [matrix_inner_top]
+          shift: [21, -7.5]
+
+      battery_connector:
+        what: ceoloide/battery_connector_jst_ph_2
+        params:
+        #  BAT_P: 'RAW'
+          reversible: true
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [16,-19]
+          rotate: 153
+
+      power_switch:
+        what: ceoloide/power_switch_smd_side
+        params:
+          reversible: true
+        where:
+          ref.aggregate.parts: [matrix_inner_bottom]
+          shift: [17.75,-12]
+          rotate: -27
+
+      reset_switch:
+        what: ceoloide/reset_switch_tht_top
+        where:
+          ref.aggregate.parts: [matrix_inner_bottom]
+          shift: [22.5, -2]
+          rotate: 63
+
+      battery_wires:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '4.45'
+          hole_drill: '4.45'
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [21,-9]
+
+      mounting_upper_outer:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_outer_top]
+          shift: [9.5, -9.5]
+
+      mounting_bottom_outer:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_outer_home]
+          shift: [9.5, -9.5]
+
+      mounting_bottom_ring:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_pinky_home]
+          shift: [9.5, -9.5]
+      
+      mounting_top_ring:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_pinky_top]
+          shift: [9.5, -9.5]
+      
+      mounting_top_index:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_index_top]
+          shift: [9.5, -9.5]
+      
+      mounting_bottom_middle:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_middle_bottom]
+          shift: [0, -14]
+
+      mounting_top_middle:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [matrix_middle_top]
+          shift: [9.5, -9.5]
+      
+      mounting_bottom_space:
+        what: ceoloide/mounting_hole_npth
+        params:
+          hole_size: '2'
+          hole_drill: '2'
+        where:
+          ref.aggregate.parts: [thumbs_layer_cluster]
+          shift: [26, 12]
