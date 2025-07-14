@@ -1,5 +1,5 @@
 include:
   - board: nice_nano_v2
-    shield: capricorne_right
+    shield: cornecave_right
   - board: nice_nano_v2
-    shield: capricorne_left
+    shield: cornecave_left
