@@ -1,13 +1,13 @@
 file_format: "1"
-id: capricorne
-name: CapriCorne
+id: cornecave
+name: CorneCave
 type: shield
-url: https://github.com/seblov/zmk-config-capricorne
+url: https://github.com/seblov/zmk-config-cornecave
 requires: [pro_micro]
 exposes: [i2c_oled]
 features:
   - keys
   - studio
 siblings:
-  - capricorne_left
-  - capricorne_right
+  - cornecave_left
+  - cornecave_right
