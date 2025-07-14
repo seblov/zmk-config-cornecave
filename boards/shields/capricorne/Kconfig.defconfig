@@ -1,7 +1,7 @@
-if SHIELD_CAPRICORNE_LEFT
+if SHIELD_CORNECAVE_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "CapriCorne"
+    default "CorneCave"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
@@ -11,7 +11,7 @@ config ZMK_USB
 
 endif
 
-if SHIELD_CAPRICORNE_LEFT || SHIELD_CAPRICORNE_RIGHT
+if SHIELD_CORNECAVE_LEFT || SHIELD_CORNECAVE_RIGHT
 
 config ZMK_SPLIT
     default y
