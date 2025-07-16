@@ -3,4 +3,5 @@ include:
     shield: cornecave_right
   - board: nice_nano_v2
     shield: cornecave_left
+  - board: nice_nano_v2
     shield: settings_reset
