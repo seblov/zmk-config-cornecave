@@ -1,7 +1,6 @@
 include:
   - board: nice_nano_v2
     shield: cornecave_right
-    snippet: zmk-usb-logging
   - board: nice_nano_v2
     shield: cornecave_left
-    snippet: zmk-usb-logging
+    shield: settings_reset
