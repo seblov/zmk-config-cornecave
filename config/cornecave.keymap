@@ -35,51 +35,9 @@
     combos {
         compatible = "zmk,combos";
 
-        Layer2 {
-            bindings = <&mo 2>;
-            key-positions = <36 37>;
-        };
-
         Refresh {
             bindings = <&kp F5>;
             key-positions = <5 4>;
-        };
-    };
-
-    macros {
-        Change_Q: Change_Q {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(NB_E)>;
-            label = "CHANGE_Q";
-        };
-
-        openM2: openM2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LC(LA(A))>;
-            label = "OPENM2";
-        };
-
-        OpenO2: OpenO2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LC(LA(O))>;
-            label = "OPENO2";
-        };
-
-        terminal: terminal {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LA(W)>;
-            label = "TERMINAL";
-        };
-
-        Column_Search: Column_Search {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LSHIFT &kp LEFT_ALT &kp NB_D>;
-            label = "COLUMN_SEARCH";
         };
     };
 
@@ -94,10 +52,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&Hold_Tap_KP TAB ESC  &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y                     &kp U                        &kp I      &kp O    &kp P           &Hold_Tap_KP NB_QUESTION NB_A_RING
-&kp LEFT_SHIFT        &kp A  &kp S  &kp D     &kp F  &kp G        &kp H                     &kp J                        &kp K      &kp L    &kp NB_O_SLASH  &kp NB_AE
-&kp LEFT_CONTROL      &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N                     &kp M                        &kp COMMA  &kp DOT  &kp SLASH       &Hold_Tap_KP LS(NON_US_HASH) NON_US_HASH
-                                    &kp LGUI  &mo 1  &kp SPACE    &Hold_Tap_KP LSHFT ENTER  &Layer_Hold_Tap 2 BACKSPACE  &mo 3
+&Hold_Tap_KP TAB ESC  &kp Q                    &kp W  &kp E     &kp R  &kp T        &kp Y                     &kp U                        &kp I      &kp O    &kp P           &Hold_Tap_KP NB_QUESTION NB_A_RING
+&kp LEFT_SHIFT        &kp A                    &kp S  &kp D     &kp F  &kp G        &kp H                     &kp J                        &kp K      &kp L    &kp NB_O_SLASH  &kp NB_AE
+&kp LEFT_CONTROL      &Hold_Tap_KP LEFT_ALT Z  &kp X  &kp C     &kp V  &kp B        &kp N                     &kp M                        &kp COMMA  &kp DOT  &kp SLASH       &Hold_Tap_KP LS(NON_US_HASH) NON_US_HASH
+                                                      &kp LGUI  &mo 1  &kp SPACE    &Hold_Tap_KP LSHFT ENTER  &Layer_Hold_Tap 2 BACKSPACE  &mo 3
             >;
         };
 
